@@ -4,7 +4,7 @@ from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
 
 def scrape():
-    executable_path = {'executable_path': ChromeDriverManager().install)}
+    executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
 
     # NASA Mars News
@@ -12,8 +12,8 @@ def scrape():
     browser.visit(url)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    title = soup.find('div', class_ = 'content_title')
-    paragraph = soup.find('div', class_ = 'article_teaser_body')
+    title = soup.find('div', class_ = 'content_title').text
+    paragraph = soup.find('div', class_ = 'article_teaser_body').text
 
     # JPL Mars Space Images - Featured Image
     url = 'https://spaceimages-mars.com/'
@@ -84,4 +84,6 @@ def scrape():
         "hemi_image_urls": hemisphere_image_urls
         }
 
-        return scrape_results
+    browser.quit()
+
+    return scrape_results
