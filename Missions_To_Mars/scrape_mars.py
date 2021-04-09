@@ -30,7 +30,7 @@ def scrape():
     mars_facts_table.columns = mars_facts_table.iloc[0]
     mars_facts_table = mars_facts_table.iloc[1:, ]
     mars_facts_table.set_index("Mars - Earth Comparison", inplace = True)
-    html_table = mars_facts_table.to_html()
+    html_table = mars_facts_table.to_html(classes = "table table-striped")
 
     # Mars Hemispheres Data
     url = 'https://marshemispheres.com/'
